@@ -6,6 +6,10 @@
 
 > **Portfolio showcase:** This repository contains selected documentation and demonstration media only. The application source code, trained model weights, datasets, clinical images, credentials, and deployment configuration are intentionally not published here. BoneSpy is **not** an approved medical device and is not intended for clinical decision-making.
 
+## Live website
+
+Explore the BoneSpy project at **[BoneSpy.com](https://bonespy.com)**.
+
 ## Demonstrations
 
 | Early segmentation prototype | Segmentation development |
