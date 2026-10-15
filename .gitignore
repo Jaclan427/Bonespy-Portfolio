@@ -1,0 +1,19 @@
+# Keep the public portfolio documentation-only
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+venv/
+uploads/
+outputs/
+datasets/
+*.pt
+*.pth
+*.onnx
+.DS_Store
