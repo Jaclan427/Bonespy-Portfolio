@@ -49,13 +49,33 @@ Measurements + implant templates
 Visual overlay and research output
 ```
 
-## Technical areas
+## Development workflow: YOLOv8 → nnU-Net v2
 
-- **Computer vision:** segmentation, mask processing, image geometry, visualization
-- **Machine learning:** YOLOv8 segmentation prototypes and nnU-Net v2 experimentation
-- **Backend:** Python-based image-processing and inference services
-- **Frontend:** React / TypeScript interfaces and browser visualization
-- **Engineering:** API integration, deployment experimentation, research validation, and troubleshooting
+BoneSpy developed through multiple iterations of the computer vision pipeline:
+
+1. **Manual dataset annotation in Roboflow:** We manually outlined anatomical structures on knee radiographs to create labeled training masks, organized training/validation images, and reviewed annotation quality. These labeled images formed the supervised learning datasets.
+2. **Early YOLOv8 segmentation prototypes:** We experimented with Ultralytics YOLOv8 segmentation to identify and visualize knee anatomy, including the femur and tibia. Early application screenshots demonstrate this stage.
+3. **Transition to nnU-Net v2:** We later adopted the nnU-Net v2 segmentation framework for more specialized medical-image segmentation experiments, using separate AP and lateral knee workflows. nnU-Net automates much of the dataset-dependent preprocessing and training configuration; it does not remove the need for correctly annotated training data.
+4. **Anatomical measurements and digital templating:** Segmentation masks were processed using Python image geometry to estimate boundaries and dimensions. Implant specifications and template overlays were used to investigate femoral and tibial component sizing and alignment.
+5. **Interactive web application:** Python services handled image analysis, while React and TypeScript supported the browser-based upload, visualization, and templating interface.
+
+### Technology stack
+
+| Area | Tools and technologies | Use in BoneSpy |
+| --- | --- | --- |
+| Image annotation and datasets | **Roboflow** | Manual segmentation labeling and dataset preparation |
+| Early deep learning experiments | **Ultralytics YOLOv8** | Initial bone segmentation models and visual outputs |
+| Medical-image segmentation | **nnU-Net v2 / PyTorch** | AP and lateral X-ray segmentation experiments |
+| Image processing and templating | **Python, NumPy, image-processing tools** | Mask processing, anatomical measurements, template alignment |
+| Backend | **Python** | Inference and image-analysis services |
+| Frontend | **React, TypeScript** | Interactive upload, results, and measurement interface |
+| CAD / manufacturer specifications | **Digital implant templates and size tables** | Research-stage comparison and sizing suggestions |
+
+### Why we switched models
+
+YOLOv8 was useful for rapidly prototyping a segmentation workflow and seeing predictions in a web interface. We then investigated nnU-Net v2 because its medical-imaging-focused training and preprocessing framework was better aligned with our need for consistent anatomical masks. This was an engineering design decision, **not** a claim that one architecture is universally more accurate.
+
+The repository intentionally distinguishes **manual labeling of training masks** from **implant templating**: the former creates training ground truth; the latter aligns prosthesis dimensions with segmented anatomy.
 
 ## Engineering considerations
 
